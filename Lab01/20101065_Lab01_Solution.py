@@ -5,8 +5,7 @@
     Assignment: Assignment 1
 
 """
-
-
+regex = "\[a-z]+\g"
 
 
 zkeyword_list = ['if','else','while','int','float','char','return','void','main','printf','scanf']
@@ -27,8 +26,6 @@ with open('input.txt', 'r') as f:
     lines = [line for line in lines if not line.startswith("#")] #* Remove comments
     lines = [line for line in lines if line] #* Remove empty lines
     
-    
-    
     #!###### Keywords #######!#
     keyword_list = [] 
     for line in lines:
@@ -44,7 +41,7 @@ with open('input.txt', 'r') as f:
         if i != keyword_list[-1]:
             output += ","
     output += "\n"
-    
+     
     #!###### IDENTIFIERS #######!#
     indentifiers_list = [] #* List of variables
     for line in lines:
@@ -52,7 +49,9 @@ with open('input.txt', 'r') as f:
             line = line.replace(';','').replace(',','').replace('int', '').replace('float', '')
             lst = [i for i in line.split(' ') if i]
             for variable in lst:
-                if variable not in indentifiers_list:
+                if variable not in indentifiers_list and variable not in zmath_operators and \
+                    variable not in zlogical_operators and variable not in others and \
+                        variable.isdigit() == False and re.match("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)", variable) == None:
                     indentifiers_list.append(variable)
                     # indentifiers_list.append(variable) #* Add variable to list, In case I need to check for duplicate variables
     # print(indentifiers_list)
@@ -66,7 +65,7 @@ with open('input.txt', 'r') as f:
         #* remove last comma 
         if i != indentifiers_list[-1]:
             output += ","
-    output += "\n"
+    output += "\n" 
     #!##########################!#
     
     #!###### Math Operators #######!#
@@ -145,12 +144,10 @@ with open('input.txt', 'r') as f:
                 and word not in indentifiers_list and word not in other_operators:
                     # print(word)
                     other_operators.append(word)
-
     output += f"Other Operators:"
     for i in other_operators:
         output += f" {i}"
         #* remove last comma 
-        
     output += "\n"
     
 print(output)
