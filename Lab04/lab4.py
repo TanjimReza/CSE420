@@ -1,5 +1,6 @@
 import re
-
+FOUND_METHODS = []
+FOUND_TYPES = []
 with open('input4.txt', 'r') as f:
     lines = f.readlines() #* Get all lines
     # print(lines)
@@ -12,5 +13,12 @@ with open('input4.txt', 'r') as f:
     regex = r"(public|private|protected).(static)?.?(int|void|double|string).(.*)"
     for line in lines:
         return_type = ""
-        if re.match(regex, line):         
-            print("Return type:", re.match(regex, line).group(3))
+        if re.match(regex, line):
+            
+            method = re.match(regex, line).group(4)
+            return_type = re.match(regex, line).group(3)
+            if method not in FOUND_METHODS and "main" not in method:
+                FOUND_METHODS.append(method)
+                FOUND_TYPES.append(return_type)
+            # print("Method name:", re.match(regex, line).group(4))       
+            # print("Return type:", re.match(regex, line).group(3))
