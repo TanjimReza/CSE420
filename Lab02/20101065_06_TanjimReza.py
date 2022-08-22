@@ -37,7 +37,7 @@ def WebAddressChecker(address):
     if address.startswith('www') or address.startswith('WWW'):
         if address.count('.') >= 2:
             if address[address.find('.')+1:][0] not in zspecial_characters:
-                if any(address.endswith(tld) for tld in zvalid_tld if address.count(tld) == 1):
+                # if any(address.endswith(tld) for tld in zvalid_tld if address.count(tld) == 1):
                     return True
                      
     else:
