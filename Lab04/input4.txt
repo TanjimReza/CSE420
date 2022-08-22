@@ -13,6 +13,11 @@ public static int subtract(int a, int b)
 { return a-b;
 }
 
+protected double tanjim(int a, int b)
+{ return a-b;
+}
+
+
 public void add()
 { return x+y;
 Page 3 of 4

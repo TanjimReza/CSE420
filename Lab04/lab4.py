@@ -9,7 +9,7 @@ with open('input4.txt', 'r') as f:
     lines = [line for line in lines if not line.startswith("#")] #* Remove comments
     lines = [line for line in lines if line] #* Remove empty lines
     # print(lines)    
-
+    print("Methods:")
     regex = r"(public|private|protected).(static)?.?(int|void|double|string).(.*)"
     for line in lines:
         return_type = ""
@@ -20,5 +20,6 @@ with open('input4.txt', 'r') as f:
             if method not in FOUND_METHODS and "main" not in method:
                 FOUND_METHODS.append(method)
                 FOUND_TYPES.append(return_type)
-            # print("Method name:", re.match(regex, line).group(4))       
-            # print("Return type:", re.match(regex, line).group(3))
+            print(re.match(regex, line).group(4),end=", ")   
+            print("return type:", re.match(regex, line).group(3)) 
+     
