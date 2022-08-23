@@ -20,6 +20,9 @@ with open('input4.txt', 'r') as f:
             if method not in FOUND_METHODS and "main" not in method:
                 FOUND_METHODS.append(method)
                 FOUND_TYPES.append(return_type)
-            print(re.match(regex, line).group(4),end=", ")   
-            print("return type:", re.match(regex, line).group(3)) 
-     
+            # print(re.match(regex, line).group(4),end=", ")   
+            # print("return type:", re.match(regex, line).group(3)) 
+    
+    for i in range(len(FOUND_METHODS)):
+        print(FOUND_METHODS[i],", return type: ",FOUND_TYPES[i])
+        
